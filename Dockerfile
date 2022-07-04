@@ -2,7 +2,7 @@
 FROM node:14.8.0-stretch AS build
 COPY ./src .
 RUN npm install \
-    ** npm run-script build
+    ** npm run build
 
 # Create final image and use PM2 to manage Express app
 FROM node:14.8.0-slim AS final
