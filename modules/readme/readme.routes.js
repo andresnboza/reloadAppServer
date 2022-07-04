@@ -2,8 +2,8 @@ import express from "express";
 
 const router = express.Router();
 
-import { getAllUploads, createUpload } from "./readme.controller.js";
+import { getAllUploads } from "./readme.controller.js";
 
-router.route("/").get(getAllUploads).post(createUpload);
+router.route("/").get(getAllUploads);
 
 export default router;

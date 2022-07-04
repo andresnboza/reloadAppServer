@@ -1,13 +1,19 @@
-# Install build dependancies and build Express app
-FROM node:14.8.0-stretch AS build
-COPY ./src .
-RUN npm install \
-    ** npm run build
+FROM node:16
 
-# Create final image and use PM2 to manage Express app
-FROM node:14.8.0-slim AS final
-RUN mkdir /app
-WORKDIR /app
-COPY build/ .
-RUN npm install -g pm2
-CMD ["pm2", "start", "server.js"]
+# Create app directory
+WORKDIR /usr/src/app
+
+# Install app dependencies
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# where available (npm@5+)
+COPY package*.json ./
+
+RUN npm install
+# If you are building your code for production
+# RUN npm ci --only=production
+
+# Bundle app source
+COPY . .
+
+EXPOSE 8080
+CMD [ "node", "server.js" ]
