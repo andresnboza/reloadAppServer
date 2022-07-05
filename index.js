@@ -13,9 +13,9 @@ connectDB()
 
     app.use(bodyParser.json());
 
-    app.use("/server/api/readme", readmeRoutes);
+    app.use("/api/readme", readmeRoutes);
 
-    app.get("/server", (req, res) => {
+    app.get("/", (req, res) => {
       res.send("Hello World");
     });
 
