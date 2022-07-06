@@ -4,6 +4,8 @@ import Readme from './readme.model.js';
 const getAllUploads = asyncHandler(async (req, res) => {
 	const items = await Readme.find({});
 
+	console.log('items', items);
+
 	items.map((item) => {
 		console.log('item', item);
 	});
@@ -11,4 +13,17 @@ const getAllUploads = asyncHandler(async (req, res) => {
 	res.json({ data: items });
 });
 
-export { getAllUploads };
+const saveUpload = asyncHandler(async (req, res) => {
+	let item = await Readme.create({
+		createdAt: Date.now(),
+		file_name: 'test',
+		encoded: {
+			0: 'Hello',
+			1: 'world',
+		},
+	});
+
+	res.status(200).json({ data: item });
+});
+
+export { getAllUploads, saveUpload };

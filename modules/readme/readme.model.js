@@ -15,7 +15,7 @@ const readmeSchema = mongoose.Schema(
   },
   {
     encoded: {
-      type: Buffer,
+      type: Object,
       required: true,
     },
   },
