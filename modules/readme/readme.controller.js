@@ -10,7 +10,7 @@ const getAllUploads = asyncHandler(async (req, res) => {
 		console.log('item', item);
 	});
 
-	res.json({ data: items });
+	res.send({ data: items });
 });
 
 const saveUpload = asyncHandler(async (req, res) => {
@@ -23,7 +23,7 @@ const saveUpload = asyncHandler(async (req, res) => {
 		},
 	});
 
-	res.status(200).json({ data: item });
+	res.send({ data: item });
 });
 
 export { getAllUploads, saveUpload };
